@@ -604,7 +604,7 @@ else:
                                 
 
                             if filesumavgnew < filesumavgold:
-                                print ">>>>its happening<<<<<<<"
+                                print "Going through each diff .."
                                
                                 del_diffs.append(unicode(last_diff).encode('utf8'))
                                 combidifflist.append(new_res['avg'])
