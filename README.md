@@ -1,2 +1,4 @@
 # PostGreSQL-Benchmarking-automated-detection-of-regression-file
-This script detects the file from the code that caused the most regression between two commits of PostGreSQL
+
+
+This script installs, or detects the installation folder of PostGreSQL. It downloads the tpch benchmark and produces the data to populate the benchmarking database at a scale factor that the user chooses. After that, it populates the tables created, and executes the TPC-H Benchmark in the commit name that the user chooses to roll back too. In continuity it keeps going forward to commmits in order to test for regression. Incase regression is found between two commits, the script will create a file with all the differences in the code of those two commits. From those differences, after compiling and re-running the TPC-H benchmark, the difference that caused the most regression will be stored in the file, as well as the commit name.  
