@@ -280,14 +280,11 @@ if os.path.exists(os.path.join(home,Dirvar))==True:
                 old_result['min'] - new_result['min'],
                 old_result['max'] - new_result['max'],
                 old_result['avg'] - new_result['avg'])
-            listavgold.append(old_result['avg'])
-            listavgnew.append(new_result['avg'])        
         
-        sumofavgold=sum(listavgold)
-        sumofavgnew=sum(listavgnew)
-        #Regression_test_avg=float(sumofavgnew*1.1)
+	sdeviationold=statistics.pstdev(listavgold)
+        sdeviationnew=statistics.pstdev(listavgnew)
 
-        if sumofavgnew<sumofavgold:
+        if sdeviationnew<sdeviationold:
             print ">>>>>Performance regression detected!<<<<"
             os.chdir(home)
 
