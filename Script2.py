@@ -5,11 +5,11 @@ import psycopg2
 import os
 import time
 import getpass
+import itertools
+import statistics
 from os.path import expanduser
 from git import Repo
 from unidiff import PatchSet
-import itertools
-
 
 os.system("pip install unidiff --user")
 os.system("pip install psycopg2 --user")
@@ -551,11 +551,10 @@ else:
             listavgold.append(old_result['avg'])
             listavgnew.append(new_result['avg'])        
         
-        sumofavgold=sum(listavgold)
-        sumofavgnew=sum(listavgnew)
-        #Regression_test_avg=float(sumofavgnew*1.1)
+        sdeviationold=statistics.pstdev(listavgold)
+        sdeviationnew=statistics.pstdev(listavgnew)
 
-        if sumofavgnew<sumofavgold:
+        if sdeviationnew<sdeviationold:
             print ">>>>>Performance regression detected!<<<<"
             os.chdir(home)
 
