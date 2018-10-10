@@ -551,10 +551,10 @@ else:
             listavgold.append(old_result['avg'])
             listavgnew.append(new_result['avg'])        
         meanold=statistics.mean(listavgold)
-	meannew=statistics.mean(listavgnew)
-	totmean=meannew-meanold
-	mergedlist=listavgold+listavgnew
-	dev=statistics.pstdev(mergedlist)
+	 meannew=statistics.mean(listavgnew)
+	 totmean=meannew-meanold
+	 mergedlist=listavgold+listavgnew
+	 dev=statistics.pstdev(mergedlist)
 
         if totmean>dev:
             print ">>>>>Performance regression detected!<<<<"
