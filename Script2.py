@@ -279,11 +279,15 @@ if os.path.exists(os.path.join(home,Dirvar))==True:
                 old_result['min'] - new_result['min'],
                 old_result['max'] - new_result['max'],
                 old_result['avg'] - new_result['avg'])
-        
-	sdeviationold=statistics.pstdev(listavgold)
-        sdeviationnew=statistics.pstdev(listavgnew)
-
-        if sdeviationnew<sdeviationold:
+	    listavgold.append(old_result['avg'])
+            listavgnew.append(new_result['avg']) 
+	meanold=statistics.mean(listavgold)
+	meannew=statistics.mean(listavgnew)
+	totmean=meannew-meanold
+	mergedlist=listavgold+listavgnew
+	dev=statistics.pstdev(mergedlist)
+	
+	if totmean>dev:
             print ">>>>>Performance regression detected!<<<<"
             os.chdir(home)
 
@@ -546,11 +550,13 @@ else:
                 old_result['avg'] - new_result['avg'])
             listavgold.append(old_result['avg'])
             listavgnew.append(new_result['avg'])        
-        
-        sdeviationold=statistics.pstdev(listavgold)
-        sdeviationnew=statistics.pstdev(listavgnew)
+        meanold=statistics.mean(listavgold)
+	meannew=statistics.mean(listavgnew)
+	totmean=meannew-meanold
+	mergedlist=listavgold+listavgnew
+	dev=statistics.pstdev(mergedlist)
 
-        if sdeviationnew<sdeviationold:
+        if totmean>dev:
             print ">>>>>Performance regression detected!<<<<"
             os.chdir(home)
 
